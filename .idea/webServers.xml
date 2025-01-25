@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="1eab6a22-570f-48d0-9a9c-4a06075f363c" name="hostinger" url="http://srv622721.hstgr.cloud">
+        <fileTransfer rootFolder="/mwm/" host="srv622721.hstgr.cloud" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
