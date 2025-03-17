@@ -1,1 +1,15 @@
- 
+# Ativar o Módulo de Reescrita
+RewriteEngine On
+
+# Desativar a Listagem de Diretórios
+Options -Indexes
+
+# Definir o Arquivo de Índice Padrão
+DirectoryIndex index.php
+
+# Certifique-se de que arquivos e diretórios existentes sejam servidos diretamente
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirecionar todas as outras solicitações para index.php
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

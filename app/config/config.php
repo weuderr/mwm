@@ -5,8 +5,20 @@
 
 // Configurações de ambiente
 define('ENVIRONMENT', 'development'); // development, production
-define('BASE_URL', 'http://localhost/mwm');
+
+// Detectar URL base automaticamente
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+$host = $_SERVER['HTTP_HOST'];
+define('BASE_URL', $protocol . $host);
+
 define('SITE_NAME', 'MWM Softwares');
+
+// Configurações do SQLite
+define('DB_FILE', ROOT_PATH . '/database/site.db');
+
+// Configurações do Admin
+define('ADMIN_USER', 'admin');
+define('ADMIN_PASS', password_hash('admin123', PASSWORD_DEFAULT)); // Senha padrão: admin123
 
 // Configurações de banco de dados (se necessário)
 define('DB_HOST', 'localhost');
@@ -15,11 +27,11 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 
 // Configurações de e-mail
-define('MAIL_HOST', 'smtp.example.com');
+define('MAIL_HOST', 'langlearners.com');
 define('MAIL_PORT', 587);
-define('MAIL_USER', 'contato@mwmsoftwares.com');
-define('MAIL_PASS', 'sua_senha');
-define('MAIL_FROM', 'contato@mwmsoftwares.com');
+define('MAIL_USER', 'not-replay@langlearners.com');
+define('MAIL_PASS', 'HlG6VN3jDXJnEW3');
+define('MAIL_FROM', 'mwmechnology@gmail.com');
 define('MAIL_FROM_NAME', 'MWM Softwares');
 
 // Configurações de segurança
