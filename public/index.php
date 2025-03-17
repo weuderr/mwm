@@ -1,4 +1,4 @@
-<?php include '../includes/header.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php'; ?>
 
 <!-- Seção Sobre Nós -->
 <section id="sobre" class="container">
@@ -22,7 +22,7 @@
                 serviços de excelência.
             </p>
             <ul>
-                <li>Desenvolvimento Web e Mobile</li>
+                <li>Desenvolvimento de Software Personalizado</li>
                 <li>Consultoria em Arquitetura de Software</li>
                 <li>Integrações de Sistemas e APIs</li>
                 <li>Manutenção e Suporte Técnico</li>
@@ -143,4 +143,4 @@
     </div>
 </section>
 
-<?php include '../includes/footer.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

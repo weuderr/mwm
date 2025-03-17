@@ -9,6 +9,7 @@ body {
     background-color: #f8f9fa;
     color: #333;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 *,
@@ -24,10 +25,16 @@ body {
     margin-bottom: 0;
     border-radius: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.navbar.scrolled {
+    background-color: #212529 !important;
+    transition: background-color 0.3s;
 }
 
 .navbar-brand {
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 1px;
 }
 
@@ -46,30 +53,40 @@ body {
    ========================== */
 .hero {
     background: linear-gradient(
-            rgba(0, 0, 0, 0.45),
-            rgba(0, 0, 0, 0.45)
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
     ),
-    url('https://source.unsplash.com/1600x900/?technology,office') no-repeat center center / cover;
-    height: 60vh;
+    url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2672&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center / cover;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
     text-align: center;
     position: relative;
-    margin-bottom: 30px;
+    margin-top: 56px; /* Compensar a navbar fixa */
 }
 
 .hero h1 {
     font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 10px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .hero p {
     font-size: 1.2rem;
     font-weight: 300;
+}
+
+.hero .btn {
+    padding: 10px 30px;
+    font-size: 1rem;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.hero .btn:hover {
+    transform: scale(1.05);
 }
 
 /* ==========================
@@ -84,6 +101,14 @@ body {
     position: relative;
 }
 
+.section-sub-title {
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-align: center;
+    color: #666;
+    margin-bottom: 50px;
+}
+
 .section-title::after {
     content: "";
     display: block;
@@ -95,12 +120,16 @@ body {
 }
 
 /* ==========================
-   SEÇÃO "SOBRE NÓS" E CONTAINERS
+   SEÇÃO SOBRE NÓS
    ========================== */
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 30px;
+#sobre img {
+    width: 100%;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+#sobre img:hover {
+    transform: scale(1.05);
 }
 
 #sobre p {
@@ -108,32 +137,75 @@ body {
     margin-bottom: 1rem;
 }
 
+#sobre ul li {
+    margin-bottom: 10px;
+}
+
 /* ==========================
    SEÇÃO SERVIÇOS
    ========================== */
-#servicos .col-md-4 {
-    margin-bottom: 30px;
+#servicos .service-box {
+    background-color: #fff;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-#servicos .col-md-4 i {
+#servicos .service-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+#servicos .service-box i {
     color: #007bff;
-    margin-bottom: 10px;
-    transition: transform 0.3s;
+    margin-bottom: 15px;
 }
 
-#servicos .col-md-4 i:hover {
-    transform: scale(1.1);
-}
-
-#servicos .col-md-4 h4 {
+#servicos .service-box h4 {
     margin-top: 15px;
     margin-bottom: 10px;
     font-weight: 600;
 }
 
-#servicos .col-md-4 p {
+#servicos .service-box p {
     font-size: 0.95rem;
     line-height: 1.6;
+}
+
+/* ==========================
+   SEÇÃO PORTFÓLIO
+   ========================== */
+#portfolio .card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#portfolio .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+#portfolio .card-img-top {
+    width: 100%;
+    height: 200px;
+    padding: 5px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* ==========================
+   SEÇÃO TESTEMUNHOS
+   ========================== */
+#testemunhos .testimonial {
+    background-color: #fff;
+    min-height: 150px;
+}
+
+#testemunhos .testimonial p {
+    font-style: italic;
+}
+
+#testemunhos .testimonial h5 {
+    margin-top: 15px;
+    font-weight: 600;
 }
 
 /* ==========================
@@ -144,16 +216,16 @@ body {
     line-height: 1.6;
 }
 
-/* Mapa responsivo */
 #endereco iframe {
     width: 100%;
     height: 250px;
     border: none;
     margin-top: 15px;
+    border-radius: 8px;
 }
 
 /* ==========================
-   SEÇÃO PRÉ-ORÇAMENTO
+   SEÇÃO CONTATO
    ========================== */
 #contato .text-center {
     margin-bottom: 30px;
@@ -195,7 +267,6 @@ footer {
     color: #fff;
     padding: 20px 0;
     text-align: center;
-    margin-top: 50px;
 }
 
 footer p {
@@ -214,6 +285,16 @@ footer a:hover {
     text-decoration: none;
 }
 
+/* Ícones de Redes Sociais */
+footer a i {
+    transition: color 0.3s, transform 0.3s;
+}
+
+footer a i:hover {
+    color: #ffc107;
+    transform: scale(1.2);
+}
+
 /* ==========================
    RESPONSIVIDADE
    ========================== */
@@ -228,5 +309,9 @@ footer a:hover {
 
     .section-title {
         font-size: 1.6rem;
+    }
+
+    #servicos .service-box {
+        margin-bottom: 20px;
     }
 }
