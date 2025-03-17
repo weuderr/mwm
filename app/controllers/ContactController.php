@@ -5,6 +5,13 @@
  */
 class ContactController extends Controller
 {
+    private $contactModel;
+
+    public function __construct()
+    {
+        $this->contactModel = new ContactModel();
+    }
+
     /**
      * Página de contato
      */
@@ -58,28 +65,21 @@ class ContactController extends Controller
             redirect(base_url('contato'));
         }
         
-        // Enviar e-mail (implementação simplificada)
-        $to = MAIL_FROM;
-        $subject = 'Novo contato do site - ' . SITE_NAME;
-        
-        $body = "Nome: $nome\n";
-        $body .= "E-mail: $email\n";
-        $body .= "Telefone: $telefone\n";
-        $body .= "Serviço de interesse: $servico\n";
-        $body .= "Mensagem: $mensagem\n";
-        
-        $headers = "From: $nome <$email>\r\n";
-        $headers .= "Reply-To: $email\r\n";
-        
-        // Tentar enviar o e-mail
-        $enviado = mail($to, $subject, $body, $headers);
-        
-        if ($enviado) {
+        // Salvar no banco de dados
+        $data = [
+            'nome' => $nome,
+            'email' => $email,
+            'telefone' => $telefone,
+            'servico' => $servico,
+            'mensagem' => $mensagem
+        ];
+
+        if ($this->contactModel->save($data)) {
             set_flash_message('success', 'Mensagem enviada com sucesso! Em breve entraremos em contato.');
         } else {
-            set_flash_message('error', 'Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente mais tarde.');
+            set_flash_message('error', 'Erro ao enviar mensagem. Por favor, tente novamente.');
         }
-        
+
         redirect(base_url('contato'));
     }
 } 

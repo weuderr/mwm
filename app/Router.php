@@ -65,6 +65,27 @@ class Router
             'controller' => 'ContactController',
             'action' => 'send'
         ];
+
+        // Rotas administrativas
+        $this->routes['admin/login'] = [
+            'controller' => 'AdminController',
+            'action' => 'login'
+        ];
+
+        $this->routes['admin/dashboard'] = [
+            'controller' => 'AdminController',
+            'action' => 'dashboard'
+        ];
+
+        $this->routes['admin/logout'] = [
+            'controller' => 'AdminController',
+            'action' => 'logout'
+        ];
+
+        $this->routes['admin/delete-contact'] = [
+            'controller' => 'AdminController',
+            'action' => 'deleteContact'
+        ];
     }
 
     /**

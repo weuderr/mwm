@@ -14,7 +14,8 @@ define('BASE_URL', $protocol . $host);
 define('SITE_NAME', 'MWM Softwares');
 
 // Configurações do SQLite
-define('DB_FILE', ROOT_PATH . '/database/site.db');
+$tmpDir = sys_get_temp_dir();
+define('DB_FILE', $tmpDir . '/mwm_site.db');
 
 // Configurações do Admin
 define('ADMIN_USER', 'admin');
