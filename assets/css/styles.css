@@ -191,6 +191,10 @@ body {
     display: block;
 }
 
+.card-img-top {
+    padding: 20px;
+}
+
 /* ==========================
    SEÇÃO TESTEMUNHOS
    ========================== */

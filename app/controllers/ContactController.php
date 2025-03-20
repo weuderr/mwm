@@ -6,10 +6,12 @@
 class ContactController extends Controller
 {
     private $contactModel;
+    private $metaPixel;
 
     public function __construct()
     {
         $this->contactModel = new ContactModel();
+        $this->metaPixel = new MetaPixelHelper();
     }
 
     /**
@@ -75,6 +77,22 @@ class ContactController extends Controller
         ];
 
         if ($this->contactModel->save($data)) {
+            // Enviar evento de conversão para o Meta Pixel
+            $userData = [
+                'em' => $this->metaPixel->hash($email), // Email hash
+                'ph' => $this->metaPixel->hash(preg_replace('/[^0-9]/', '', $telefone)), // Phone hash
+                'fn' => $this->metaPixel->hash($nome) // First name hash
+            ];
+
+            $customData = [
+                'currency' => 'BRL',
+                'service_type' => $servico,
+                'content_name' => 'Formulário de Contato'
+            ];
+
+            // Enviar evento Lead
+            $this->metaPixel->sendEvent('Lead', $userData, $customData);
+
             set_flash_message('success', 'Mensagem enviada com sucesso! Em breve entraremos em contato.');
         } else {
             set_flash_message('error', 'Erro ao enviar mensagem. Por favor, tente novamente.');

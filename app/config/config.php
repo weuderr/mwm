@@ -13,6 +13,10 @@ define('BASE_URL', $protocol . $host);
 
 define('SITE_NAME', 'MWM Softwares');
 
+// Configurações do Meta Pixel
+define('META_ACCESS_TOKEN', 'EAAIxaPg8WxQBOwiv3xoZBME9cRDHIpO2GmkodeS3xlFEjG9UnodePUWh2tTq1yKQUKve33wFenNIx45ZAUgCUc1KVJ3zo4eUOW0TioqEIrU0vSPXnFiRob08jCE1ZA9BP5Tnw4OwBDS9MvMfZATTwdNXd4Ahs5CX0ZCZANrXx3I37AGknNla4KzzasteHMPeF5cgZDZD');
+define('META_PIXEL_ID', '1097174152174144'); // Adicione seu Pixel ID aqui
+
 // Configurações do SQLite
 $tmpDir = sys_get_temp_dir();
 define('DB_FILE', $tmpDir . '/mwm_site.db');

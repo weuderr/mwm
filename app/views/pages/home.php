@@ -129,7 +129,7 @@
             <div class="item">
                 <div class="testimonial p-4 shadow-sm rounded bg-white">
                     <p class="mb-3">"Profissionais dedicados e soluções inovadoras. Recomendo a todos que buscam excelência."</p>
-                    <h5>- Outro Cliente</h5>
+                    <h5>- Cliente Satisfeito</h5>
                 </div>
             </div>
         </div>
