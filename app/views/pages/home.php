@@ -1,9 +1,122 @@
-<!-- Seção Hero (Início) -->
-<section id="home" class="hero">
-    <div class="container text-center">
-        <h1 class="animate__animated animate__fadeInDown">Bem-vindo à MWM Softwares</h1>
-        <p class="lead animate__animated animate__fadeInUp">Soluções completas em desenvolvimento e produção de software</p>
-        <a href="<?= base_url('contato') ?>" class="btn btn-primary btn-lg mt-4 animate__animated animate__zoomIn">Solicite um Orçamento</a>
+<!-- Seção Hero -->
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8 hero-content">
+                <h1 class="display-4 animate__animated animate__fadeInDown">Bem-vindo à MWM Softwares</h1>
+                <p class="lead animate__animated animate__fadeInDown animate__delay-1s">
+                    Transformamos ideias em soluções digitais de alta performance.
+                </p>
+                <div class="mt-4 animate__animated animate__fadeInUp animate__delay-2s">
+                    <a href="<?= base_url('servicos') ?>" class="btn btn-primary btn-lg mr-3 track-click" data-event-name="HeroButtonClick" data-event-category="Services">
+                        Nossos Serviços <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="<?= base_url('contato') ?>" class="btn btn-outline-light btn-lg track-click" data-event-name="HeroButtonClick" data-event-category="Contact">
+                        Fale Conosco <i class="fas fa-envelope ml-2"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 d-none d-md-block animate__animated animate__fadeInRight animate__delay-1s">
+                <img src="<?= asset_url('img/hero-illustration.png') ?>" alt="Ilustração Digital" class="img-fluid" loading="eager">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção de Boas-Vindas (Otimizada para Visitantes do Facebook) -->
+<section class="py-5 bg-light welcome-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-5">
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="fas fa-star text-warning fa-2x mr-3"></i>
+                            <h2 class="m-0">Transforme Sua Ideia em Realidade</h2>
+                        </div>
+                        <p class="lead">Na MWM Softwares, nós entendemos sua visão e a transformamos em soluções digitais de alto impacto.</p>
+                        <ul class="list-unstyled mt-4">
+                            <li class="mb-3">
+                                <div class="d-flex">
+                                    <i class="fas fa-check-circle text-success mr-2 mt-1"></i>
+                                    <div>
+                                        <strong>Desenvolvimento Web Personalizado</strong>
+                                        <p class="text-muted mb-0">Criamos sites e aplicações web sob medida para seu negócio.</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="mb-3">
+                                <div class="d-flex">
+                                    <i class="fas fa-check-circle text-success mr-2 mt-1"></i>
+                                    <div>
+                                        <strong>Aplicativos Móveis Intuitivos</strong>
+                                        <p class="text-muted mb-0">Desenvolvimento para iOS e Android com foco na experiência do usuário.</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="d-flex">
+                                    <i class="fas fa-check-circle text-success mr-2 mt-1"></i>
+                                    <div>
+                                        <strong>Consultoria Técnica Especializada</strong>
+                                        <p class="text-muted mb-0">Orientação estratégica para maximizar o valor do seu investimento tecnológico.</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="mt-4">
+                            <a href="<?= base_url('contato') ?>" class="btn btn-primary btn-lg track-click" data-event-name="WelcomeContactClick">
+                                Solicitar um Orçamento <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-6 mb-4">
+                        <div class="card border-0 shadow-sm h-100 clickable">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-code fa-3x text-primary mb-3"></i>
+                                <h4>Desenvolvimento Web</h4>
+                                <p class="mb-0">Sites responsivos, sistemas web e e-commerce.</p>
+                                <a href="<?= base_url('servicos#desenvolvimento') ?>" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-4">
+                        <div class="card border-0 shadow-sm h-100 clickable">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-mobile-alt fa-3x text-primary mb-3"></i>
+                                <h4>Apps Móveis</h4>
+                                <p class="mb-0">Aplicativos nativos e híbridos para iOS e Android.</p>
+                                <a href="<?= base_url('servicos#apps') ?>" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card border-0 shadow-sm h-100 clickable">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-cogs fa-3x text-primary mb-3"></i>
+                                <h4>Consultoria</h4>
+                                <p class="mb-0">Orientação estratégica e arquitetura de software.</p>
+                                <a href="<?= base_url('servicos#consultoria') ?>" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card border-0 shadow-sm h-100 clickable">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-clipboard-check fa-3x text-primary mb-3"></i>
+                                <h4>Projetos</h4>
+                                <p class="mb-0">Veja nossos cases de sucesso e portfólio.</p>
+                                <a href="<?= base_url('portfolio') ?>" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -34,38 +147,73 @@
     </div>
 </section>
 
-<!-- Seção Serviços -->
-<section id="servicos" class="container py-5">
-    <h2 class="section-title">Nossos Serviços</h2>
-    <div class="row text-center">
-        <div class="col-md-4 mb-4">
-            <div class="service-box p-4 shadow-sm rounded">
-                <i class="fas fa-laptop-code fa-3x mb-3 text-primary"></i>
-                <h4>Criação de Sites</h4>
-                <p>
-                    Desenvolvimento de sites modernos, responsivos e otimizados para mecanismos de busca (SEO).
-                    Seja um site institucional, blog ou loja virtual, nós cuidamos de tudo.
-                </p>
+<!-- Seção de Serviços -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="section-title">
+            <h2>Nossos Serviços</h2>
+            <p class="lead text-muted">Soluções completas para suas necessidades digitais</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card service-box h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-box mb-4">
+                            <i class="fas fa-laptop-code fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="card-title">Desenvolvimento Web</h3>
+                        <p class="card-text">Criação de sites, sistemas e aplicações web modernas, responsivas e otimizadas para SEO.</p>
+                        <a href="<?= base_url('servicos#desenvolvimento') ?>" class="btn btn-outline-primary mt-3">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card service-box h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-box mb-4">
+                            <i class="fas fa-mobile-alt fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="card-title">Aplicativos Móveis</h3>
+                        <p class="card-text">Desenvolvimento de aplicativos móveis nativos e híbridos para iOS e Android com foco na experiência do usuário.</p>
+                        <a href="<?= base_url('servicos#apps') ?>" class="btn btn-outline-primary mt-3">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card service-box h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-box mb-4">
+                            <i class="fas fa-lightbulb fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="card-title">Consultoria</h3>
+                        <p class="card-text">Orientação estratégica para seu negócio, incluindo arquitetura de software, processos e tecnologias.</p>
+                        <a href="<?= base_url('servicos#consultoria') ?>" class="btn btn-outline-primary mt-3">Saiba Mais</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-4 mb-4">
-            <div class="service-box p-4 shadow-sm rounded">
-                <i class="fas fa-code fa-3x mb-3 text-primary"></i>
-                <h4>Desenvolvimento de Sistemas</h4>
-                <p>
-                    Soluções sob medida para atender as necessidades específicas do seu negócio.
-                    Sistemas web, aplicativos mobile e automação de processos.
-                </p>
-            </div>
+        
+        <div class="text-center mt-4">
+            <a href="<?= base_url('servicos') ?>" class="btn btn-primary btn-lg">Ver Todos os Serviços</a>
         </div>
-        <div class="col-md-4 mb-4">
-            <div class="service-box p-4 shadow-sm rounded">
-                <i class="fas fa-chart-line fa-3x mb-3 text-primary"></i>
-                <h4>Consultoria e Suporte</h4>
-                <p>
-                    Análise de infraestrutura, arquitetura de software, estratégias de crescimento e
-                    acompanhamento contínuo para garantir que sua solução funcione perfeitamente.
-                </p>
+    </div>
+</section>
+
+<!-- Chamada para Ação -->
+<section class="bg-primary text-white py-5 cta-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mb-4 mb-lg-0">
+                <h2 class="mb-3">Pronto para transformar sua ideia em realidade?</h2>
+                <p class="lead mb-0">Entre em contato conosco hoje mesmo para discutir seu projeto e obter um orçamento personalizado.</p>
+            </div>
+            <div class="col-lg-4 text-lg-right">
+                <a href="<?= base_url('contato') ?>" class="btn btn-light btn-lg track-click" data-event-name="CTAButtonClick">
+                    Fale Conosco <i class="fas fa-arrow-right ml-2"></i>
+                </a>
             </div>
         </div>
     </div>

@@ -9,7 +9,7 @@
 <!-- Conteúdo Principal -->
 <div class="container py-5">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 mb-5">
             <h2 class="mb-4">Envie sua Mensagem</h2>
             <p class="mb-4">
                 Preencha o formulário abaixo e envie seus dados para receber um orçamento personalizado.
@@ -20,52 +20,101 @@
                 <!-- Token CSRF -->
                 <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
                 
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="nome">Nome <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome" required/>
+                <!-- Indicador de Progresso -->
+                <div class="progress mb-4 d-none" id="formProgress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                
+                <!-- Passo 1: Interesse -->
+                <div id="passo1" class="form-step">
+                    <h4 class="mb-3 text-primary">O que você precisa?</h4>
+                    <div class="form-group">
+                        <label for="servicoInteresse">Qual serviço você procura? <span class="text-danger">*</span></label>
+                        <select class="form-control" id="servicoInteresse" name="servicoInteresse" required>
+                            <option value="">Selecione...</option>
+                            <option value="Criação de Site">Criação de Site</option>
+                            <option value="Desenvolvimento de Sistema">Desenvolvimento de Sistema</option>
+                            <option value="Aplicativo Mobile">Aplicativo Mobile</option>
+                            <option value="Consultoria">Consultoria</option>
+                        </select>
                         <div class="invalid-feedback">
-                            Por favor, insira seu nome.
+                            Por favor, selecione um serviço de interesse.
                         </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="email">E-mail <span class="text-danger">*</span></label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Seu e-mail" required/>
-                        <div class="invalid-feedback">
-                            Por favor, insira um e-mail válido.
+                    <div class="form-group d-none" id="detalhesServico">
+                        <!-- Detalhes específicos do serviço serão carregados aqui -->
+                    </div>
+                    <button type="button" id="passo1Btn" class="btn btn-primary">Continuar</button>
+                </div>
+                
+                <!-- Passo 2: Dados de Contato -->
+                <div id="passo2" class="form-step d-none">
+                    <h4 class="mb-3 text-primary">Seus Dados de Contato</h4>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="nome">Nome <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome" required/>
+                            <div class="invalid-feedback">
+                                Por favor, insira seu nome.
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="email">E-mail <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Seu e-mail" required/>
+                            <div class="invalid-feedback">
+                                Por favor, insira um e-mail válido.
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="telefone">Telefone</label>
-                    <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="+XXX (XX) XXXXX-XXXX"/>
-                </div>
-                <div class="form-group">
-                    <label for="servicoInteresse">Qual serviço você procura? <span class="text-danger">*</span></label>
-                    <select class="form-control" id="servicoInteresse" name="servicoInteresse" required>
-                        <option value="">Selecione...</option>
-                        <option value="Criação de Site">Criação de Site</option>
-                        <option value="Desenvolvimento de Sistema">Desenvolvimento de Sistema</option>
-                        <option value="Aplicativo Mobile">Aplicativo Mobile</option>
-                        <option value="Consultoria">Consultoria</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Por favor, selecione um serviço de interesse.
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="+XXX (XX) XXXXX-XXXX"/>
                     </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="contatoWhatsapp" name="contatoWhatsapp">
+                            <label class="custom-control-label" for="contatoWhatsapp">Prefiro ser contatado via WhatsApp</label>
+                        </div>
+                    </div>
+                    <button type="button" id="voltarPasso1" class="btn btn-outline-secondary">Voltar</button>
+                    <button type="button" id="passo2Btn" class="btn btn-primary ml-2">Continuar</button>
                 </div>
-                <div class="form-group">
-                    <label for="mensagem">Mensagem</label>
-                    <textarea
-                            class="form-control"
-                            id="mensagem"
-                            name="mensagem"
-                            rows="4"
-                            placeholder="Conte-nos um pouco mais sobre o que precisa..."
-                    ></textarea>
+                
+                <!-- Passo 3: Detalhes Adicionais -->
+                <div id="passo3" class="form-step d-none">
+                    <h4 class="mb-3 text-primary">Detalhes do Projeto</h4>
+                    <div class="form-group">
+                        <label for="mensagem">Conte-nos um pouco sobre seu projeto (opcional)</label>
+                        <textarea
+                                class="form-control"
+                                id="mensagem"
+                                name="mensagem"
+                                rows="4"
+                                placeholder="Descreva brevemente o que você precisa..."
+                        ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Qual é o prazo para o projeto?</label>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="prazoUrgente" name="prazo" value="Urgente" class="custom-control-input">
+                            <label class="custom-control-label" for="prazoUrgente">Urgente (menos de 1 mês)</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="prazoMedio" name="prazo" value="Médio" class="custom-control-input">
+                            <label class="custom-control-label" for="prazoMedio">Médio (1-3 meses)</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="prazoLongo" name="prazo" value="Longo" class="custom-control-input">
+                            <label class="custom-control-label" for="prazoLongo">Longo (mais de 3 meses)</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="prazoFlexivel" name="prazo" value="Flexível" class="custom-control-input" checked>
+                            <label class="custom-control-label" for="prazoFlexivel">Flexível/Não tenho pressa</label>
+                        </div>
+                    </div>
+                    <button type="button" id="voltarPasso2" class="btn btn-outline-secondary">Voltar</button>
+                    <button type="submit" class="btn btn-success ml-2">Enviar Solicitação</button>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg">
-                    Enviar Solicitação
-                </button>
             </form>
         </div>
         
@@ -76,7 +125,7 @@
                 </div>
                 <div class="card-body">
                     <p><i class="fas fa-envelope mr-2 text-primary"></i> mwmechnology@gmail.com</p>
-                    <p><i class="fas fa-phone mr-2 text-primary"></i> +351 912 345 678</p>
+                    <p><i class="fas fa-phone mr-2 text-primary"></i> +351 961 021 247</p>
                     <p><i class="fas fa-map-marker-alt mr-2 text-primary"></i> Rua André de Resende, 24 - Porto, Portugal</p>
                     <p><i class="fas fa-clock mr-2 text-primary"></i> Segunda a Sexta: 9h às 18h</p>
                 </div>
@@ -112,4 +161,239 @@
             aria-label="Mapa da localização da MWM Softwares"
         ></iframe>
     </div>
-</div> 
+</div>
+
+<!-- Scripts específicos para o formulário dinâmico -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos do formulário
+    const form = document.getElementById('preOrcamentoForm');
+    const passo1 = document.getElementById('passo1');
+    const passo2 = document.getElementById('passo2');
+    const passo3 = document.getElementById('passo3');
+    const passo1Btn = document.getElementById('passo1Btn');
+    const passo2Btn = document.getElementById('passo2Btn');
+    const voltarPasso1 = document.getElementById('voltarPasso1');
+    const voltarPasso2 = document.getElementById('voltarPasso2');
+    const progressBar = document.querySelector('#formProgress .progress-bar');
+    const formProgress = document.getElementById('formProgress');
+    const servicoInteresse = document.getElementById('servicoInteresse');
+    const detalhesServico = document.getElementById('detalhesServico');
+    
+    // Mostrar detalhes específicos com base no serviço selecionado
+    servicoInteresse.addEventListener('change', function() {
+        const servico = this.value;
+        
+        if (servico) {
+            detalhesServico.classList.remove('d-none');
+            let html = '';
+            
+            switch(servico) {
+                case 'Criação de Site':
+                    html = `
+                        <label>Que tipo de site você precisa?</label>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="siteTipo1" name="siteTipo" value="Site Institucional" class="custom-control-input" checked>
+                            <label class="custom-control-label" for="siteTipo1">Site Institucional/Apresentação</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="siteTipo2" name="siteTipo" value="E-commerce" class="custom-control-input">
+                            <label class="custom-control-label" for="siteTipo2">E-commerce/Loja Online</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="siteTipo3" name="siteTipo" value="Blog" class="custom-control-input">
+                            <label class="custom-control-label" for="siteTipo3">Blog/Portal de Conteúdo</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="siteTipo4" name="siteTipo" value="Landing Page" class="custom-control-input">
+                            <label class="custom-control-label" for="siteTipo4">Landing Page</label>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'Desenvolvimento de Sistema':
+                    html = `
+                        <label>Qual o foco principal do sistema?</label>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="sistemaTipo1" name="sistemaTipo" value="Gestão" class="custom-control-input" checked>
+                            <label class="custom-control-label" for="sistemaTipo1">Gestão Empresarial</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="sistemaTipo2" name="sistemaTipo" value="Financeiro" class="custom-control-input">
+                            <label class="custom-control-label" for="sistemaTipo2">Financeiro/Contábil</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="sistemaTipo3" name="sistemaTipo" value="CRM" class="custom-control-input">
+                            <label class="custom-control-label" for="sistemaTipo3">CRM/Gestão de Clientes</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="sistemaTipo4" name="sistemaTipo" value="Outro" class="custom-control-input">
+                            <label class="custom-control-label" for="sistemaTipo4">Outro</label>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'Aplicativo Mobile':
+                    html = `
+                        <label>Para quais plataformas?</label>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" id="plataformaAndroid" name="plataforma[]" value="Android" class="custom-control-input" checked>
+                            <label class="custom-control-label" for="plataformaAndroid">Android</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" id="plataformaIOS" name="plataforma[]" value="iOS" class="custom-control-input" checked>
+                            <label class="custom-control-label" for="plataformaIOS">iOS (iPhone/iPad)</label>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'Consultoria':
+                    html = `
+                        <label>Qual o foco da consultoria?</label>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="consultoriaTipo1" name="consultoriaTipo" value="Arquitetura" class="custom-control-input" checked>
+                            <label class="custom-control-label" for="consultoriaTipo1">Arquitetura de Software</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="consultoriaTipo2" name="consultoriaTipo" value="Processos" class="custom-control-input">
+                            <label class="custom-control-label" for="consultoriaTipo2">Processos de Desenvolvimento</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="consultoriaTipo3" name="consultoriaTipo" value="Tecnologias" class="custom-control-input">
+                            <label class="custom-control-label" for="consultoriaTipo3">Escolha de Tecnologias</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="consultoriaTipo4" name="consultoriaTipo" value="Outro" class="custom-control-input">
+                            <label class="custom-control-label" for="consultoriaTipo4">Outro</label>
+                        </div>
+                    `;
+                    break;
+                    
+                default:
+                    detalhesServico.classList.add('d-none');
+            }
+            
+            detalhesServico.innerHTML = html;
+        } else {
+            detalhesServico.classList.add('d-none');
+        }
+    });
+    
+    // Avançar para o Passo 2
+    passo1Btn.addEventListener('click', function() {
+        if (servicoInteresse.value === '') {
+            servicoInteresse.classList.add('is-invalid');
+            return;
+        }
+        
+        servicoInteresse.classList.remove('is-invalid');
+        passo1.classList.add('d-none');
+        passo2.classList.remove('d-none');
+        formProgress.classList.remove('d-none');
+        progressBar.style.width = '66%';
+        progressBar.setAttribute('aria-valuenow', '66');
+        
+        // Registrar evento no Facebook Pixel
+        if (typeof fbq !== 'undefined') {
+            fbq('trackCustom', 'FormStep2', {
+                servico: servicoInteresse.value
+            });
+        }
+    });
+    
+    // Avançar para o Passo 3
+    passo2Btn.addEventListener('click', function() {
+        const nome = document.getElementById('nome');
+        const email = document.getElementById('email');
+        
+        // Validar campos obrigatórios
+        let isValid = true;
+        
+        if (nome.value === '') {
+            nome.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            nome.classList.remove('is-invalid');
+        }
+        
+        if (email.value === '' || !email.value.includes('@')) {
+            email.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            email.classList.remove('is-invalid');
+        }
+        
+        if (!isValid) return;
+        
+        passo2.classList.add('d-none');
+        passo3.classList.remove('d-none');
+        progressBar.style.width = '100%';
+        progressBar.setAttribute('aria-valuenow', '100');
+        
+        // Registrar evento no Facebook Pixel
+        if (typeof fbq !== 'undefined') {
+            fbq('trackCustom', 'FormStep3', {
+                servico: servicoInteresse.value
+            });
+        }
+    });
+    
+    // Voltar para o Passo 1
+    voltarPasso1.addEventListener('click', function() {
+        passo2.classList.add('d-none');
+        passo1.classList.remove('d-none');
+        progressBar.style.width = '33%';
+        progressBar.setAttribute('aria-valuenow', '33');
+    });
+    
+    // Voltar para o Passo 2
+    voltarPasso2.addEventListener('click', function() {
+        passo3.classList.add('d-none');
+        passo2.classList.remove('d-none');
+        progressBar.style.width = '66%';
+        progressBar.setAttribute('aria-valuenow', '66');
+    });
+    
+    // Submissão do formulário
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Validar campos obrigatórios
+        let isValid = true;
+        const nome = document.getElementById('nome');
+        const email = document.getElementById('email');
+        
+        if (nome.value === '') {
+            nome.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            nome.classList.remove('is-invalid');
+        }
+        
+        if (email.value === '' || !email.value.includes('@')) {
+            email.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            email.classList.remove('is-invalid');
+        }
+        
+        if (isValid) {
+            // Mostrar indicador de carregamento
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Enviando...';
+            submitBtn.disabled = true;
+            
+            // Registrar evento no Facebook Pixel
+            if (typeof fbq !== 'undefined') {
+                fbq('trackCustom', 'FormSubmission', {
+                    servico: servicoInteresse.value
+                });
+            }
+            
+            // Enviar formulário
+            this.submit();
+        }
+    });
+});
+</script> 
+

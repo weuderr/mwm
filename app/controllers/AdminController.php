@@ -48,7 +48,7 @@ class AdminController extends Controller
     public function dashboard()
     {
         $contacts = $this->contactModel->getAll();
-        $this->render('admin/dashboard', ['contacts' => $contacts]);
+        $this->renderAdmin('admin/dashboard', ['contacts' => $contacts]);
     }
 
     public function logout()

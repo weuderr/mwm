@@ -78,7 +78,7 @@
                 <div class="card-body">
                     <p>Fale diretamente com nossa equipe:</p>
                     <p><i class="fas fa-envelope mr-2"></i> mwmechnology@gmail.com</p>
-                    <p><i class="fas fa-phone mr-2"></i> +351 912 345 678</p>
+                    <p><i class="fas fa-phone mr-2"></i> +351 961 021 247</p>
                 </div>
             </div>
         </div>
