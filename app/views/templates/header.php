@@ -4,23 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?= SITE_NAME ?> - Soluções em Desenvolvimento de Software</title>
-    <meta name="description" content="MWM Softwares - Soluções completas em desenvolvimento e produção de software. Criação de sites, sistemas web e aplicativos.">
-    
+
+
+    <title><?= $title ?? 'MWM Softwares - Soluções em Desenvolvimento de Software' ?></title>
+    <meta name="description" content="<?= $description ?? 'MWM Softwares - Desenvolvimento profissional de sites, sistemas web, aplicativos mobile e soluções digitais personalizadas para sua empresa.' ?>">
+    <meta name="keywords" content="desenvolvimento web, aplicativos mobile, sistemas web, software personalizado, consultoria em TI, desenvolvimento de sites, programação, tecnologia">
+    <meta name="author" content="MWM Softwares">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<?= $title ?? 'MWM Softwares - Soluções em Desenvolvimento de Software' ?>">
+    <meta property="og:description" content="<?= $description ?? 'MWM Softwares - Desenvolvimento profissional de sites, sistemas web, aplicativos mobile e soluções digitais personalizadas para sua empresa.' ?>">
+    <meta property="og:image" content="<?= asset_url('img/logo.png') ?>">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="MWM Softwares">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?= $title ?? 'MWM Softwares - Soluções em Desenvolvimento de Software' ?>">
+    <meta name="twitter:description" content="<?= $description ?? 'MWM Softwares - Desenvolvimento profissional de sites, sistemas web, aplicativos mobile e soluções digitais personalizadas para sua empresa.' ?>">
+    <meta name="twitter:image" content="<?= asset_url('img/logo.png') ?>">
+
+    <!-- Mobile Meta -->
+    <meta name="theme-color" content="#2196F3">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MWM Softwares">
+    <meta name="application-name" content="MWM Softwares">
+
     <!-- Resource Hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    
+
     <!-- PWA -->
     <link rel="manifest" href="<?= base_url('manifest.json') ?>">
     <meta name="theme-color" content="#2196F3">
-    
+
     <!-- Preload Critical Assets -->
     <link rel="preload" href="<?= base_url('assets/css/critical.css') ?>" as="style">
     <link rel="preload" href="<?= base_url('assets/js/critical.js') ?>" as="script">
     <link rel="preload" href="<?= base_url('assets/fonts/your-main-font.woff2') ?>" as="font" type="font/woff2" crossorigin>
-    
+
     <!-- Critical CSS -->
     <style>
         /* Inline critical CSS here */
@@ -74,29 +104,29 @@
             opacity: 1;
         }
     </style>
-    
+
     <!-- Async CSS Loading -->
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>" media="print" onload="this.media='all'">
     <noscript>
         <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     </noscript>
-    
+
     <!-- Prefetch -->
     <link rel="prefetch" href="<?= base_url('assets/js/contact.js') ?>">
     <link rel="prefetch" href="<?= base_url('assets/js/portfolio.js') ?>">
-    
+
     <!-- Intersection Observer Polyfill -->
     <script>
         if (!('IntersectionObserver' in window)) {
             document.write('<script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"><\/script>');
         }
     </script>
-    
+
     <!-- Lazy Loading Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var lazyImages = [].slice.call(document.querySelectorAll('img.lazy-load'));
-            
+
             if ('IntersectionObserver' in window) {
                 let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
                     entries.forEach(function(entry) {
@@ -111,7 +141,7 @@
                         }
                     });
                 });
-                
+
                 lazyImages.forEach(function(lazyImage) {
                     lazyImageObserver.observe(lazyImage);
                 });
@@ -121,14 +151,14 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?= asset_url('img/favicon.ico') ?>" type="image/x-icon">
-    
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    
+
     <!-- Font Awesome (carregado assincronamente) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"></noscript>
-    
+
     <!-- Owl Carousel CSS (carregamento condicional) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" media="print" onload="this.media='all'">
@@ -136,14 +166,14 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     </noscript>
-    
+
     <!-- Animate.css (carregamento condicional) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></noscript>
-    
+
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="<?= asset_url('css/style.css') ?>">
-    
+
     <!-- Estilos adicionais para melhorar a interatividade -->
     <style>
         /* Melhorar visualização de elementos clicáveis */
@@ -151,48 +181,48 @@
             transition: all 0.2s ease;
             position: relative;
         }
-        
+
         .nav-link:hover, .btn:hover, a[href]:not(.navbar-brand):hover {
             transform: translateY(-2px);
         }
-        
+
         .nav-link.active {
             font-weight: bold;
             border-bottom: 2px solid #fff;
         }
-        
+
         /* Feedback visual para cliques */
         .btn:active, a[href]:active {
             transform: translateY(1px);
         }
-        
+
         /* Breadcrumbs para melhorar navegação */
         .breadcrumb {
             background-color: transparent;
             padding-left: 0;
             margin-top: 75px;
         }
-        
+
         /* Melhorar visualização de cards e elementos clicáveis */
         .card, .clickable {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
-        
+
         .card:hover, .clickable:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        
+
         /* Realçar botões e call-to-actions */
         .btn-primary, .btn-success {
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        
+
         .btn-primary:hover, .btn-success:hover {
             box-shadow: 0 6px 8px rgba(0,0,0,0.15);
         }
-        
+
         /* Esqueleto de carregamento para melhorar percepção de velocidade */
         .skeleton-loader {
             background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
@@ -202,17 +232,17 @@
             min-height: 20px;
             margin-bottom: 10px;
         }
-        
+
         @keyframes loading {
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
-        
+
         /* Destaque para primeira visita */
         .welcome-highlight {
             animation: welcome-pulse 2s ease-out;
         }
-        
+
         @keyframes welcome-pulse {
             0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); }
             70% { box-shadow: 0 0 0 15px rgba(0, 123, 255, 0); }
@@ -274,37 +304,13 @@
         src="https://www.facebook.com/tr?id=<?= META_PIXEL_ID ?>&ev=PageView&noscript=1"/>
     </noscript>
     <!-- End Meta Pixel Code -->
-
-    <!-- Favicon e ícones -->
-    <link rel="icon" type="image/png" href="<?= asset_url('img/favicon.png') ?>">
-    <link rel="apple-touch-icon" href="<?= asset_url('img/apple-touch-icon.png') ?>">
-    
-    <!-- Meta tags -->
-    <meta name="keywords" content="desenvolvimento web, aplicativos, software, consultoria em TI">
-    
-    <!-- Preload de recursos críticos -->
-    <link rel="preload" href="<?= asset_url('fonts/fontawesome/webfonts/fa-solid-900.woff2') ?>" as="font" type="font/woff2" crossorigin>
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="stylesheet" href="<?= asset_url('css/style.css') ?>">
-    
-    <!-- JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" defer></script>
 </head>
 <body>
     <!-- Único loader para a página -->
     <div id="page-loader" class="page-loader">
         <div class="loader-spinner"></div>
     </div>
-    
+
     <!-- Conteúdo principal -->
     <div id="page-content">
         <!-- Barra de Navegação -->
