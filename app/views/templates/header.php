@@ -274,6 +274,30 @@
         src="https://www.facebook.com/tr?id=<?= META_PIXEL_ID ?>&ev=PageView&noscript=1"/>
     </noscript>
     <!-- End Meta Pixel Code -->
+
+    <!-- Favicon e ícones -->
+    <link rel="icon" type="image/png" href="<?= asset_url('img/favicon.png') ?>">
+    <link rel="apple-touch-icon" href="<?= asset_url('img/apple-touch-icon.png') ?>">
+    
+    <!-- Meta tags -->
+    <meta name="keywords" content="desenvolvimento web, aplicativos, software, consultoria em TI">
+    
+    <!-- Preload de recursos críticos -->
+    <link rel="preload" href="<?= asset_url('fonts/fontawesome/webfonts/fa-solid-900.woff2') ?>" as="font" type="font/woff2" crossorigin>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="<?= asset_url('css/style.css') ?>">
+    
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" defer></script>
 </head>
 <body>
     <!-- Único loader para a página -->

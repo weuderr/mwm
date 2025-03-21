@@ -1,3 +1,11 @@
+<?php
+// Incluir o hero section
+include_once __DIR__ . '/../components/hero.php';
+
+// Incluir a seção de destaques
+include_once __DIR__ . '/../components/highlights.php';
+?>
+
 <!-- Seção Hero -->
 <section class="hero">
     <div class="container">
@@ -320,4 +328,42 @@
             <a href="<?= base_url('contato') ?>" class="btn btn-primary btn-lg">Fale Conosco</a>
         </div>
     </div>
-</section> 
+</section>
+
+<!-- Scripts de interação -->
+<script src="<?= asset_url('js/engagement.js') ?>"></script>
+
+<!-- AOS (Animate On Scroll) -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<!-- Owl Carousel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script>
+// Inicializar AOS
+AOS.init({
+    duration: 1000,
+    once: true
+});
+
+// Inicializar Owl Carousel para o hero
+$(document).ready(function(){
+    $('.hero-slider').owlCarousel({
+        items: 1,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+        nav: true,
+        navText: [
+            '<button class="hero-prev"><i class="fas fa-chevron-left"></i></button>',
+            '<button class="hero-next"><i class="fas fa-chevron-right"></i></button>'
+        ],
+        dots: true,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        smartSpeed: 450
+    });
+});
+</script> 
