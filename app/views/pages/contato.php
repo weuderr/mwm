@@ -1,11 +1,3 @@
-<!-- Cabeçalho da Página -->
-<div class="page-header bg-primary text-white">
-    <div class="container py-5">
-        <h1>Fale Conosco</h1>
-        <p class="lead">Entre em contato para solicitar um orçamento ou tirar suas dúvidas</p>
-    </div>
-</div>
-
 <!-- Conteúdo Principal -->
 <div class="container py-5">
     <div class="row">
@@ -305,6 +297,9 @@ document.addEventListener('DOMContentLoaded', function() {
     passo2Btn.addEventListener('click', function() {
         const nome = document.getElementById('nome');
         const email = document.getElementById('email');
+        const telefone = document.getElementById('telefone');
+        const servicoInteresse = document.getElementById('servicoInteresse');
+        const formData = new FormData();
         
         // Validar campos obrigatórios
         let isValid = true;
@@ -325,17 +320,81 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!isValid) return;
         
-        passo2.classList.add('d-none');
-        passo3.classList.remove('d-none');
-        progressBar.style.width = '100%';
-        progressBar.setAttribute('aria-valuenow', '100');
+        // Mostrar indicador de carregamento
+        const originalBtnText = passo2Btn.innerHTML;
+        passo2Btn.innerHTML = '<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Salvando...';
+        passo2Btn.disabled = true;
         
-        // Registrar evento no Facebook Pixel
-        if (typeof fbq !== 'undefined') {
-            fbq('trackCustom', 'FormStep3', {
-                servico: servicoInteresse.value
-            });
+        // Preparar dados para envio
+        formData.append('nome', nome.value);
+        formData.append('email', email.value);
+        formData.append('telefone', telefone.value);
+        formData.append('servicoInteresse', servicoInteresse.value);
+        formData.append('csrf_token', document.querySelector('input[name="csrf_token"]').value);
+        
+        if (document.getElementById('contatoWhatsapp').checked) {
+            formData.append('contatoWhatsapp', '1');
         }
+        
+        // Enviar dados parciais via AJAX
+        fetch('<?= base_url('salvar-contato-parcial') ?>', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Restaurar botão
+            passo2Btn.innerHTML = originalBtnText;
+            passo2Btn.disabled = false;
+            
+            if (data.success) {
+                // Avançar para o próximo passo
+                passo2.classList.add('d-none');
+                passo3.classList.remove('d-none');
+                progressBar.style.width = '100%';
+                progressBar.setAttribute('aria-valuenow', '100');
+                
+                // Registrar evento no Facebook Pixel
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'FormStep3', {
+                        servico: servicoInteresse.value
+                    });
+                }
+                
+                // Adicionar mensagem de confirmação sutil
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'alert alert-success alert-dismissible fade show mt-3';
+                alertDiv.innerHTML = 'Seus dados de contato foram salvos! Complete o formulário para finalizar.';
+                alertDiv.innerHTML += '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                passo3.prepend(alertDiv);
+                
+                // Remover a mensagem após 5 segundos
+                setTimeout(() => {
+                    alertDiv.classList.remove('show');
+                    setTimeout(() => alertDiv.remove(), 150);
+                }, 5000);
+            } else {
+                // Mostrar erro, mas permitir avançar
+                console.error('Erro ao salvar dados parcialmente:', data.message);
+                
+                // Avançar mesmo assim para não bloquear o usuário
+                passo2.classList.add('d-none');
+                passo3.classList.remove('d-none');
+                progressBar.style.width = '100%';
+                progressBar.setAttribute('aria-valuenow', '100');
+            }
+        })
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+            passo2Btn.innerHTML = originalBtnText;
+            passo2Btn.disabled = false;
+            
+            // Avançar mesmo em caso de erro para não bloquear o usuário
+            passo2.classList.add('d-none');
+            passo3.classList.remove('d-none');
+            progressBar.style.width = '100%';
+            progressBar.setAttribute('aria-valuenow', '100');
+        });
     });
     
     // Voltar para o Passo 1

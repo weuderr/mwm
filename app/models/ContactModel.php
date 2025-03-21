@@ -115,7 +115,14 @@ class ContactModel
             $stmt->bindValue(':prazo_projeto', isset($data['prazo_projeto']) ? $data['prazo_projeto'] : '', SQLITE3_TEXT);
             $stmt->bindValue(':prefere_whatsapp', isset($data['prefere_whatsapp']) ? 1 : 0, SQLITE3_INTEGER);
 
-            return $stmt->execute();
+            $result = $stmt->execute();
+            
+            if ($result) {
+                // Retornar o ID do último registro inserido
+                return $this->db->lastInsertRowID();
+            }
+            
+            return false;
         } catch (Exception $e) {
             error_log("Erro ao salvar contato: " . $e->getMessage());
             return false;

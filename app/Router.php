@@ -65,6 +65,12 @@ class Router
             'controller' => 'ContactController',
             'action' => 'send'
         ];
+        
+        // Salvar contato parcial (AJAX)
+        $this->routes['salvar-contato-parcial'] = [
+            'controller' => 'ContactController',
+            'action' => 'savePartial'
+        ];
 
         // Rotas administrativas
         $this->routes['admin/login'] = [
