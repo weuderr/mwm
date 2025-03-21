@@ -4,7 +4,7 @@
  */
 
 // Configurações de ambiente
-define('ENVIRONMENT', 'development'); // development, production
+define('ENVIRONMENT', 'production'); // development, production
 
 // Detectar URL base automaticamente
 $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';

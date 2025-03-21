@@ -86,6 +86,11 @@ class Router
             'controller' => 'AdminController',
             'action' => 'deleteContact'
         ];
+
+        $this->routes['admin/update-contact'] = [
+            'controller' => 'AdminController',
+            'action' => 'updateContact'
+        ];
     }
 
     /**

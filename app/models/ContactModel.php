@@ -37,17 +37,7 @@ class ContactModel
             $this->db->enableExceptions(true);
 
             // Criar tabela se não existir
-            $this->db->exec('
-                CREATE TABLE IF NOT EXISTS contacts (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    nome TEXT NOT NULL,
-                    email TEXT NOT NULL,
-                    telefone TEXT,
-                    servico TEXT NOT NULL,
-                    mensagem TEXT,
-                    data_envio DATETIME DEFAULT CURRENT_TIMESTAMP
-                )
-            ');
+            $this->createTable();
         } catch (Exception $e) {
             // Registrar o erro em um arquivo de log
             error_log("Erro ao inicializar o banco de dados: " . $e->getMessage());
@@ -55,12 +45,65 @@ class ContactModel
         }
     }
 
+    private function createTable()
+    {
+        $query = "CREATE TABLE IF NOT EXISTS contatos (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nome TEXT NOT NULL,
+            email TEXT NOT NULL,
+            telefone TEXT NOT NULL,
+            servico TEXT NOT NULL,
+            mensagem TEXT,
+            observacao TEXT,
+            prazo_projeto TEXT,
+            prefere_whatsapp INTEGER DEFAULT 0,
+            data_envio DATETIME DEFAULT CURRENT_TIMESTAMP
+        )";
+        
+        $this->db->exec($query);
+
+        // Verificar se as novas colunas existem
+        $result = $this->db->query("PRAGMA table_info(contatos)");
+        $hasPrazo = false;
+        $hasWhatsapp = false;
+        $hasObservacao = false;
+        
+        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+            if ($row['name'] === 'observacao') {
+                $hasObservacao = true;
+            }
+            if ($row['name'] === 'prazo_projeto') {
+                $hasPrazo = true;
+            }
+            if ($row['name'] === 'prefere_whatsapp') {
+                $hasWhatsapp = true;
+            }
+        }
+        
+        // Adicionar as colunas se não existirem
+        if (!$hasObservacao) {
+            $this->db->exec("ALTER TABLE contatos ADD COLUMN observacao TEXT");
+        }
+        if (!$hasPrazo) {
+            $this->db->exec("ALTER TABLE contatos ADD COLUMN prazo_projeto TEXT");
+        }
+        if (!$hasWhatsapp) {
+            $this->db->exec("ALTER TABLE contatos ADD COLUMN prefere_whatsapp INTEGER DEFAULT 0");
+        }
+    }
+
     public function save($data)
     {
         try {
             $stmt = $this->db->prepare('
-                INSERT INTO contacts (nome, email, telefone, servico, mensagem)
-                VALUES (:nome, :email, :telefone, :servico, :mensagem)
+                INSERT INTO contatos (
+                    nome, email, telefone, servico, mensagem, 
+                    observacao, prazo_projeto, prefere_whatsapp
+                )
+                VALUES (
+                    :nome, :email, :telefone, :servico, :mensagem,
+                    :observacao, :prazo_projeto, :prefere_whatsapp
+                )
             ');
 
             $stmt->bindValue(':nome', $data['nome'], SQLITE3_TEXT);
@@ -68,6 +111,9 @@ class ContactModel
             $stmt->bindValue(':telefone', $data['telefone'], SQLITE3_TEXT);
             $stmt->bindValue(':servico', $data['servico'], SQLITE3_TEXT);
             $stmt->bindValue(':mensagem', $data['mensagem'], SQLITE3_TEXT);
+            $stmt->bindValue(':observacao', isset($data['observacao']) ? $data['observacao'] : '', SQLITE3_TEXT);
+            $stmt->bindValue(':prazo_projeto', isset($data['prazo_projeto']) ? $data['prazo_projeto'] : '', SQLITE3_TEXT);
+            $stmt->bindValue(':prefere_whatsapp', isset($data['prefere_whatsapp']) ? 1 : 0, SQLITE3_INTEGER);
 
             return $stmt->execute();
         } catch (Exception $e) {
@@ -79,7 +125,7 @@ class ContactModel
     public function getAll()
     {
         try {
-            $result = $this->db->query('SELECT * FROM contacts ORDER BY data_envio DESC');
+            $result = $this->db->query('SELECT * FROM contatos ORDER BY data_envio DESC');
             $contacts = [];
 
             while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
@@ -96,11 +142,44 @@ class ContactModel
     public function delete($id)
     {
         try {
-            $stmt = $this->db->prepare('DELETE FROM contacts WHERE id = :id');
+            $stmt = $this->db->prepare('DELETE FROM contatos WHERE id = :id');
             $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
             return $stmt->execute();
         } catch (Exception $e) {
             error_log("Erro ao excluir contato: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function update($id, $data)
+    {
+        try {
+            $stmt = $this->db->prepare("
+                UPDATE contatos 
+                SET nome = :nome,
+                    email = :email,
+                    telefone = :telefone,
+                    servico = :servico,
+                    mensagem = :mensagem,
+                    observacao = :observacao,
+                    prazo_projeto = :prazo_projeto,
+                    prefere_whatsapp = :prefere_whatsapp
+                WHERE id = :id
+            ");
+            
+            $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
+            $stmt->bindValue(':nome', $data['nome'], SQLITE3_TEXT);
+            $stmt->bindValue(':email', $data['email'], SQLITE3_TEXT);
+            $stmt->bindValue(':telefone', $data['telefone'], SQLITE3_TEXT);
+            $stmt->bindValue(':servico', $data['servico'], SQLITE3_TEXT);
+            $stmt->bindValue(':mensagem', $data['mensagem'], SQLITE3_TEXT);
+            $stmt->bindValue(':observacao', isset($data['observacao']) ? $data['observacao'] : '', SQLITE3_TEXT);
+            $stmt->bindValue(':prazo_projeto', isset($data['prazo_projeto']) ? $data['prazo_projeto'] : '', SQLITE3_TEXT);
+            $stmt->bindValue(':prefere_whatsapp', isset($data['prefere_whatsapp']) ? 1 : 0, SQLITE3_INTEGER);
+            
+            return $stmt->execute();
+        } catch (Exception $e) {
+            error_log("Erro ao atualizar contato: " . $e->getMessage());
             return false;
         }
     }
