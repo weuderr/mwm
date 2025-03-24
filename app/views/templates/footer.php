@@ -53,48 +53,22 @@
 <section class="bg-light py-4 border-top">
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
-                <h5 class="text-dark mb-3">Mapa do Site</h5>
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <h5 class="text-dark mb-4">Mapa do Site</h5>
                 <div class="row">
-                    <div class="col-6 col-md-3">
-                        <div class="nav-category mb-3">
-                            <h6><i class="fas fa-home mr-2"></i>Principal</h6>
-                            <ul class="list-unstyled">
-                                <li><a href="<?= base_url() ?>" class="text-secondary">Início</a></li>
-                                <li><a href="<?= base_url('sobre') ?>" class="text-secondary">Sobre Nós</a></li>
-                                <li><a href="<?= base_url('contato') ?>" class="text-secondary">Contato</a></li>
-                            </ul>
-                        </div>
+                    <div class="col-6">
+                        <ul class="nav-category list-unstyled footer-links">
+                            <li><a href="<?= base_url() ?>" class="text-dark">Início</a></li>
+                            <li><a href="<?= base_url('sobre') ?>" class="text-dark">Sobre Nós</a></li>
+                            <li><a href="<?= base_url('contato') ?>" class="text-dark">Contato</a></li>
+                        </ul>
                     </div>
-                    <div class="col-6 col-md-3">
-                        <div class="nav-category mb-3">
-                            <h6><i class="fas fa-cogs mr-2"></i>Serviços</h6>
-                            <ul class="list-unstyled">
-                                <li><a href="<?= base_url('servicos#desenvolvimento') ?>" class="text-secondary">Desenvolvimento Web</a></li>
-                                <li><a href="<?= base_url('servicos#apps') ?>" class="text-secondary">Aplicativos Móveis</a></li>
-                                <li><a href="<?= base_url('servicos#consultoria') ?>" class="text-secondary">Consultoria</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="nav-category mb-3">
-                            <h6><i class="fas fa-briefcase mr-2"></i>Portfólio</h6>
-                            <ul class="list-unstyled">
-                                <li><a href="<?= base_url('portfolio#websites') ?>" class="text-secondary">Websites</a></li>
-                                <li><a href="<?= base_url('portfolio#sistemas') ?>" class="text-secondary">Sistemas</a></li>
-                                <li><a href="<?= base_url('portfolio#apps') ?>" class="text-secondary">Aplicativos</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="nav-category mb-3">
-                            <h6><i class="fas fa-info-circle mr-2"></i>Mais Informações</h6>
-                            <ul class="list-unstyled">
-                                <li><a href="<?= base_url('termos') ?>" class="text-secondary">Termos de Uso</a></li>
-                                <li><a href="<?= base_url('privacidade') ?>" class="text-secondary">Política de Privacidade</a></li>
-                                <li><a href="<?= base_url('faq') ?>" class="text-secondary">FAQ</a></li>
-                            </ul>
-                        </div>
+                    <div class="col-6">
+                        <ul class="nav-category list-unstyled footer-links">
+                            <li><a href="<?= base_url('servicos') ?>" class="text-dark">Serviços</a></li>
+                            <li><a href="<?= base_url('portfolio') ?>" class="text-dark">Portfólio</a></li>
+                            <li><a href="<?= base_url('faq') ?>" class="text-dark">FAQ</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -272,5 +246,30 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+
+<div class="footer-bottom py-3 border-top">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-left">
+                <p class="mb-0 text-dark">
+                    &copy; <?= date('Y') ?> MWM Softwares. Todos os direitos reservados.
+                </p>
+            </div>
+            <div class="col-md-6 text-center text-md-right mt-3 mt-md-0">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a href="<?= base_url('termos') ?>" class="text-dark">Termos</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="<?= base_url('privacidade') ?>" class="text-dark">Privacidade</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="<?= base_url('faq') ?>" class="text-dark">FAQ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html> 

@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <!-- Preload de recursos críticos -->
+    <link rel="preload" href="<?= asset_url('img/hero-bg.webp') ?>" as="image">
+    <link rel="preload" href="<?= asset_url('fonts/roboto.woff2') ?>" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="<?= asset_url('css/critical.css') ?>" as="style">
+    <link rel="preload" href="<?= asset_url('js/critical.js') ?>" as="script">
+
+    <!-- Preconnect para domínios externos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://www.clarity.ms" crossorigin>
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://www.clarity.ms">
+    <link rel="dns-prefetch" href="https://connect.facebook.net">
 
     <title><?= $title ?? 'MWM Softwares - Soluções em Desenvolvimento de Software' ?></title>
     <meta name="description" content="<?= $description ?? 'MWM Softwares - Desenvolvimento profissional de sites, sistemas web, aplicativos mobile e soluções digitais personalizadas para sua empresa.' ?>">
@@ -53,6 +71,28 @@
 
     <!-- Critical CSS -->
     <style>
+        /* Estilos críticos para LCP */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .hero .lead {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
         /* Inline critical CSS here */
         /* This will be generated automatically by a build tool */
         .skeleton {
@@ -304,6 +344,58 @@
         src="https://www.facebook.com/tr?id=<?= META_PIXEL_ID ?>&ev=PageView&noscript=1"/>
     </noscript>
     <!-- End Meta Pixel Code -->
+
+    <!-- Carregamento otimizado de fontes -->
+    <link rel="stylesheet" href="<?= asset_url('fonts/roboto.css') ?>" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="<?= asset_url('fonts/roboto.css') ?>"></noscript>
+
+    <!-- Bootstrap CSS (carregado de forma assíncrona) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"></noscript>
+
+    <!-- Font Awesome (carregado de forma assíncrona) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"></noscript>
+
+    <!-- Scripts críticos inline -->
+    <script>
+        // Otimização do carregamento de imagens
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carregar imagem hero de forma otimizada
+            const heroBg = new Image();
+            heroBg.src = '<?= asset_url('img/hero-bg.webp') ?>';
+            heroBg.onload = function() {
+                document.querySelector('.hero').style.backgroundImage = 
+                    `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('${this.src}')`;
+            };
+
+            // Lazy loading otimizado
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            if (img.dataset.srcset) {
+                                img.srcset = img.dataset.srcset;
+                            }
+                            img.classList.add('loaded');
+                            observer.unobserve(img);
+                        }
+                    });
+                });
+
+                document.querySelectorAll('img.lazy-load').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+        });
+    </script>
+
+    <!-- Scripts não críticos carregados de forma assíncrona -->
+    <script async src="<?= asset_url('js/non-critical.js') ?>"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></script>
 </head>
 <body>
     <!-- Único loader para a página -->

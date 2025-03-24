@@ -27,7 +27,7 @@
                     </ul>
                 </div>
                 <div class="card-footer text-center bg-white border-0 pb-4">
-                    <a href="<?= base_url('contato') ?>" class="btn btn-outline-primary">Solicitar Orçamento</a>
+                    <a href="<?= base_url('contato') ?>" class="btn btn-outline-primary SAIBA MAIS">Solicitar Orçamento</a>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
                     </ul>
                 </div>
                 <div class="card-footer text-center bg-white border-0 pb-4">
-                    <a href="<?= base_url('contato') ?>" class="btn btn-outline-primary">Solicitar Orçamento</a>
+                    <a href="<?= base_url('contato') ?>" class="btn btn-outline-primary SAIBA MAIS">Solicitar Orçamento</a>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
             <div class="card h-100 service-card">
                 <div class="card-body text-center">
                     <i class="fas fa-mobile-alt fa-4x mb-3 text-primary"></i>
-                    <h3>Aplicativos Mobile</h3>
+                    <h3>Aplicativos Móveis</h3>
                     <p class="card-text">
                         Desenvolvimento de aplicativos nativos e híbridos para iOS e Android,
                         com foco em usabilidade e performance.
@@ -73,7 +73,7 @@
                     </ul>
                 </div>
                 <div class="card-footer text-center bg-white border-0 pb-4">
-                    <a href="<?= base_url('contato') ?>" class="btn btn-outline-primary">Solicitar Orçamento</a>
+                    <a href="<?= base_url('contato') ?>" class="btn btn-outline-primary SAIBA MAIS">Solicitar Orçamento</a>
                 </div>
             </div>
         </div>

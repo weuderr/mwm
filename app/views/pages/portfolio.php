@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="card-footer bg-white">
-                    <a href="#" class="btn btn-sm btn-outline-primary">Ver Detalhes</a>
+                    <a href="#" class="btn btn-sm btn-outline-primary VER PORTFÓLIO COMPLETO">Ver Detalhes</a>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="card-footer bg-white">
-                    <a href="#" class="btn btn-sm btn-outline-primary">Ver Detalhes</a>
+                    <a href="#" class="btn btn-sm btn-outline-primary VER PORTFÓLIO COMPLETO">Ver Detalhes</a>
                 </div>
             </div>
         </div>
@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 <div class="card-footer bg-white">
-                    <a href="#" class="btn btn-sm btn-outline-primary">Ver Detalhes</a>
+                    <a href="#" class="btn btn-sm btn-outline-primary VER PORTFÓLIO COMPLETO">Ver Detalhes</a>
                 </div>
             </div>
         </div>
@@ -107,7 +107,7 @@
                     </div>
                 </div>
                 <div class="card-footer bg-white">
-                    <a href="#" class="btn btn-sm btn-outline-primary">Ver Detalhes</a>
+                    <a href="#" class="btn btn-sm btn-outline-primary VER PORTFÓLIO COMPLETO">Ver Detalhes</a>
                 </div>
             </div>
         </div>
@@ -129,7 +129,7 @@
                     </div>
                 </div>
                 <div class="card-footer bg-white">
-                    <a href="#" class="btn btn-sm btn-outline-primary">Ver Detalhes</a>
+                    <a href="#" class="btn btn-sm btn-outline-primary VER PORTFÓLIO COMPLETO">Ver Detalhes</a>
                 </div>
             </div>
         </div>
@@ -151,7 +151,7 @@
                     </div>
                 </div>
                 <div class="card-footer bg-white">
-                    <a href="#" class="btn btn-sm btn-outline-primary">Ver Detalhes</a>
+                    <a href="#" class="btn btn-sm btn-outline-primary VER PORTFÓLIO COMPLETO">Ver Detalhes</a>
                 </div>
             </div>
         </div>
@@ -173,7 +173,7 @@
                     </div>
                 </div>
                 <div class="card-footer bg-white">
-                    <a href="#" class="btn btn-sm btn-outline-primary">Ver Detalhes</a>
+                    <a href="#" class="btn btn-sm btn-outline-primary VER PORTFÓLIO COMPLETO">Ver Detalhes</a>
                 </div>
             </div>
         </div>
@@ -195,7 +195,7 @@
                     </div>
                 </div>
                 <div class="card-footer bg-white">
-                    <a href="#" class="btn btn-sm btn-outline-primary">Ver Detalhes</a>
+                    <a href="#" class="btn btn-sm btn-outline-primary VER PORTFÓLIO COMPLETO">Ver Detalhes</a>
                 </div>
             </div>
         </div>

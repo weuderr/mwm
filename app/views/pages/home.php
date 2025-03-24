@@ -17,7 +17,19 @@
                 </div>
             </div>
             <div class="col-md-4 d-none d-md-block animate__animated animate__fadeInRight animate__delay-1s">
-                <img src="<?= asset_url('img/hero-illustration.png') ?>" alt="Ilustração Digital" class="img-fluid" loading="eager">
+                <picture>
+                    <source srcset="<?= asset_url('img/hero-illustration.webp') ?>" type="image/webp">
+                    <source srcset="<?= asset_url('img/hero-illustration.png') ?>" type="image/png">
+                    <img 
+                        src="<?= asset_url('img/hero-illustration.png') ?>" 
+                        alt="Ilustração Digital" 
+                        class="img-fluid" 
+                        width="500" 
+                        height="400"
+                        loading="eager"
+                        decoding="async"
+                    >
+                </picture>
             </div>
         </div>
     </div>
@@ -99,7 +111,7 @@
                             <div class="card-body text-center p-4">
                                 <i class="fas fa-cogs fa-3x text-primary mb-3"></i>
                                 <h4>Consultoria</h4>
-                                <p class="mb-0">Orientação estratégica e arquitetura de software.</p>
+                                <p class="mb-0">Orientação estratégica para seu projeto.</p>
                                 <a href="<?= base_url('servicos#consultoria') ?>" class="stretched-link"></a>
                             </div>
                         </div>
@@ -107,10 +119,10 @@
                     <div class="col-6">
                         <div class="card border-0 shadow-sm h-100 clickable">
                             <div class="card-body text-center p-4">
-                                <i class="fas fa-clipboard-check fa-3x text-primary mb-3"></i>
-                                <h4>Projetos</h4>
-                                <p class="mb-0">Veja nossos cases de sucesso e portfólio.</p>
-                                <a href="<?= base_url('portfolio') ?>" class="stretched-link"></a>
+                                <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                                <h4>Segurança</h4>
+                                <p class="mb-0">Proteção e conformidade para seus dados.</p>
+                                <a href="<?= base_url('servicos#seguranca') ?>" class="stretched-link"></a>
                             </div>
                         </div>
                     </div>
